@@ -17,6 +17,7 @@ class FilamentTracerServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-tracer')
             ->hasConfigFile()
+            ->hasMigration('create_tracer_table')
             ->hasTranslations();
         // ->hasRoutes([
         //     __DIR__ . '../routes/web.php'
