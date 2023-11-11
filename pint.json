@@ -1,0 +1,115 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "@PSR12": true,
+    "align_multiline_comment": {
+      "comment_type": "all_multiline"
+    },
+    "array_indentation": true,
+    "array_syntax": {
+      "syntax": "short"
+    },
+    "assign_null_coalescing_to_coalesce_equal": false,
+    "binary_operator_spaces": {
+      "default": "single_space"
+    },
+    "blank_line_after_namespace": true,
+    "blank_line_after_opening_tag": true,
+    "blank_line_before_statement": {
+      "statements": [
+        "break",
+        "case",
+        "continue",
+        "declare",
+        "default",
+        "do",
+        "exit",
+        "for",
+        "foreach",
+        "goto",
+        "if",
+        "include",
+        "include_once",
+        "phpdoc",
+        "require",
+        "require_once",
+        "return",
+        "switch",
+        "throw",
+        "try",
+        "while",
+        "yield",
+        "yield_from"
+      ]
+    },
+    "blank_lines_before_namespace": {
+      "min_line_breaks": 1
+    },
+    "control_structure_braces": true,
+    "control_structure_continuation_position": {
+      "position": "same_line"
+    },
+    "curly_braces_position": {
+      "allow_single_line_anonymous_functions": true,
+      "allow_single_line_empty_anonymous_classes": true,
+      "anonymous_classes_opening_brace": "next_line_unless_newline_at_signature_end",
+      "anonymous_functions_opening_brace": "same_line",
+      "classes_opening_brace": "next_line_unless_newline_at_signature_end",
+      "control_structures_opening_brace": "same_line",
+      "functions_opening_brace": "next_line_unless_newline_at_signature_end"
+    },
+    "declare_parentheses": true,
+    "no_extra_blank_lines": {
+      "tokens": [
+        "attribute",
+        "break",
+        "case",
+        "continue",
+        "curly_brace_block",
+        "default",
+        "extra",
+        "parenthesis_brace_block",
+        "return",
+        "square_brace_block",
+        "switch",
+        "throw",
+        "use",
+        "use_trait"
+      ]
+    },
+    "no_multiple_statements_per_line": true,
+    "braces": {
+      "allow_single_line_closure": true,
+      "position_after_anonymous_constructs": "next",
+      "allow_single_line_anonymous_class_with_empty_body": true,
+      "position_after_control_structures": "next",
+      "position_after_functions_and_oop_constructs": "next"
+    },
+    "cast_spaces": {
+      "space": "single"
+    },
+    "concat_space": {
+      "spacing": "one"
+    },
+    "constant_case": {
+      "case": "lower"
+    },
+    "explicit_string_variable": true,
+    "statement_indentation": true,
+    "no_whitespace_in_blank_line": true,
+    "simplified_null_return": true,
+    "single_quote": {
+      "strings_containing_single_quote_chars": false
+    },
+    "strict_comparison": true,
+    "return_type_declaration": {
+      "space_before": "none"
+    },
+    "function_typehint_space": true,
+    "trim_array_spaces": true,
+    "new_with_braces": {
+      "anonymous_class": false,
+      "named_class": false
+    }
+  }
+}
