@@ -12,20 +12,21 @@ return new class extends Migration {
     {
         Schema::create(config('filament-tracer.database.table_name'), function (Blueprint $table) {
             $table->bigIncrements(config('filament-tracer.database.primary_key'))->primary();
-            $table->string('type', 255)->default('exception');
+            $table->string('source', 255);
+            $table->string('error_type', 255)->default('Error');
+            $table->string('path', 100);
+            $table->string('ip', 64);
             $table->string('code', 12);
             $table->text('message');
-            $table->string('file', 100);
             $table->integer('line');
-            $table->text('trace');
             $table->string('method', 100);
-            $table->string('path', 100);
-            $table->text('query')->nullable();
+            $table->string('file', 100);
+            $table->text('traces')->nullable();
+            $table->text('queries')->nullable();
             $table->text('body')->nullable();
-            $table->text('cookies')->nullable();
             $table->text('headers')->nullable();
-            $table->string('ip', 64);
-            $table->timestamps();
+            $table->text('cookies')->nullable();
+            $table->timestamp('created_at', 0)->nullable();
         });
     }
 
@@ -34,6 +35,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('tracers');
+        Schema::dropIfExists(config('filament-tracer.database.table_name'));
     }
 };

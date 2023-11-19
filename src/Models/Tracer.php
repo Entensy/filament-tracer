@@ -2,14 +2,16 @@
 
 namespace Entensy\FilamentTracer\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tracer extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    public $timestamps = false;
 
     protected $casts = [
         'created_at' => 'datetime',

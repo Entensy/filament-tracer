@@ -2,7 +2,10 @@
 
 namespace Entensy\FilamentTracer;
 
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentTracerServiceProvider extends PackageServiceProvider
@@ -18,7 +21,9 @@ class FilamentTracerServiceProvider extends PackageServiceProvider
             ->name('filament-tracer')
             ->hasConfigFile()
             ->hasMigration('create_tracer_table')
-            ->hasTranslations();
+            ->hasTranslations()
+            ->hasViews();
+
         // ->hasRoutes([
         //     __DIR__ . '../routes/web.php'
         // ])
@@ -49,6 +54,9 @@ class FilamentTracerServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        //
+        FilamentAsset::register([
+            Js::make('filament-tracer', __DIR__ . '/../resources/dist/filament-tracer.js'),
+            Css::make('filament-tracer', __DIR__ . '/../resources/dist/filament-tracer.css'),
+        ], package: 'entensy/filament-tracer');
     }
 }
