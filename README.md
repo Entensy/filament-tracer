@@ -51,11 +51,11 @@ public function panel(Panel $panel): Panel
             ->plugins([
                 FilamentTracerPlugin::make()
                     // You may define how you would like to get tab badge numbers, these must return int type
-                    ->tracesCounterUsing(fn($record) => count( explode(PHP_EOL, $record->traces) ) ?? 0),
-                    ->queriesCounterUsing(fn($record) => /** return int value */),
-                    ->bodyCounterUsing(fn($record) => /** return int value */),
-                    ->headersCounterUsing(fn($record) => /** return int value */),
-                    ->cookiesCounterUsing(fn($record) => /** return int value */),
+                    ->tracesCounterUsing(fn($record) => count( explode(PHP_EOL, $record->traces) ) ?? 0)
+                    ->queriesCounterUsing(fn($record) => /** return int value */)
+                    ->bodyCounterUsing(fn($record) => /** return int value */)
+                    ->headersCounterUsing(fn($record) => /** return int value */)
+                    ->cookiesCounterUsing(fn($record) => /** return int value */)
             ]);
 }
 ```
