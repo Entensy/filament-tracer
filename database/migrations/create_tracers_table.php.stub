@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create(config('filament-tracer.database.table_name'), function (Blueprint $table) {
-            $table->bigIncrements(config('filament-tracer.database.primary_key'))->primary();
+            $table->bigIncrements(config('filament-tracer.database.primary_key'));
             $table->string('source', 255);
             $table->string('error_type', 255)->default('Error');
             $table->string('path', 100);

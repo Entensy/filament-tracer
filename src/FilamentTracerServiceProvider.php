@@ -20,7 +20,7 @@ class FilamentTracerServiceProvider extends PackageServiceProvider
         $package
             ->name('filament-tracer')
             ->hasConfigFile()
-            ->hasMigration('create_tracer_table')
+            ->hasMigration('create_tracers_table')
             ->hasTranslations()
             ->hasViews();
 
