@@ -26,7 +26,7 @@ class FilamentTracerPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            app(config('filament-tracer.filament.resource')),
+            config('filament-tracer.filament.resource'),
         ]);
     }
 
