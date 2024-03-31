@@ -3,7 +3,7 @@ import sql from "highlight.js/lib/languages/sql";
 
 hljs.registerLanguage("sql", sql);
 
-hljs.initHighlighting();
+hljs.highlightAll();
 
 document.querySelectorAll(".language-sql").forEach((e) => {
     hljs.highlightElement(e);

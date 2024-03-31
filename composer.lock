@@ -1551,12 +1551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/uri-template.git",
-                "reference": "3600fe9c05af136190271fc9d0393ff5631e498f"
+                "reference": "cbc8960e9aaf108f6f932ca001799d95b7876fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/3600fe9c05af136190271fc9d0393ff5631e498f",
-                "reference": "3600fe9c05af136190271fc9d0393ff5631e498f",
+                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/cbc8960e9aaf108f6f932ca001799d95b7876fb8",
+                "reference": "cbc8960e9aaf108f6f932ca001799d95b7876fb8",
                 "shasum": ""
             },
             "require": {
@@ -1630,7 +1630,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-03T20:00:35+00:00"
+            "time": "2024-03-31T10:06:05+00:00"
         },
         {
             "name": "illuminate/auth",
@@ -5359,12 +5359,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "8adc869823fb59416f247e8ea911558b127ffe97"
+                "reference": "a2708a5da5c87d1d0d52937bdeac625df659e11f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8adc869823fb59416f247e8ea911558b127ffe97",
-                "reference": "8adc869823fb59416f247e8ea911558b127ffe97",
+                "url": "https://api.github.com/repos/symfony/console/zipball/a2708a5da5c87d1d0d52937bdeac625df659e11f",
+                "reference": "a2708a5da5c87d1d0d52937bdeac625df659e11f",
                 "shasum": ""
             },
             "require": {
@@ -5445,7 +5445,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-27T09:54:01+00:00"
+            "time": "2024-03-29T19:07:53+00:00"
         },
         {
             "name": "symfony/css-selector",
