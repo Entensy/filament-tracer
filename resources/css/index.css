@@ -1,5 +1,3 @@
-@import "../../vendor/filament/filament/resources/css/theme.css";
-
 .fi-tracer__block {
     @apply flex flex-col gap-4 overflow-y-scroll max-h-[600px] p-2;
 }
