@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 interface Tracerable
 {
-    public function __construct(Throwable $t, Request $request = null);
+    public function __construct(Throwable $t, ?Request $request = null);
 
     public function getThrowable(): Throwable;
 

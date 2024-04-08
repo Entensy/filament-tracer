@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'id' => 'ID',
-    'source' => 'Source',
-    'error_type' => 'Error Type',
-    'path' => 'Path',
-    'ip' => 'IP Address',
-    'code' => 'Code',
-    'message' => 'Message',
-    'line' => 'Line',
-    'method' => 'Method',
-    'file' => 'File',
+    'id' => 'معرف',
+    'source' => 'مصدر',
+    'error_type' => 'نوع الخطأ',
+    'path' => 'مسار',
+    'ip' => 'عنوان IP',
+    'code' => 'رمز',
+    'message' => 'رسالة',
+    'line' => 'خط',
+    'method' => 'طريقة',
+    'file' => 'ملف',
     'trace' => 'Trace',
     'traces' => 'Traces',
     'caller' => 'Caller',
@@ -18,13 +18,13 @@ return [
     'body' => 'Body',
     'headers' => 'Headers',
     'cookies' => 'Cookies',
-    'created_at' => 'Created At',
+    'created_at' => 'أنشئت في',
 
-    'created_from' => 'Created From :date',
-    'created_until' => 'Created Until :date',
+    'created_from' => 'تم إنشاؤها من :date',
+    'created_until' => 'خلق حتى :date',
 
     'navigation' => [
-        'group' => 'settings',
+        'group' => 'إعدادات',
         'label' => [
             'singular' => 'Tracer',
             'plural' => 'Tracers',
@@ -32,8 +32,8 @@ return [
     ],
 
     'tabs' => [
-        'details' => 'Details',
-        'exceptions' => 'Exceptions',
+        'details' => 'التفاصيل',
+        'exceptions' => 'الاستثناءات',
         'queries' => 'Queries',
         'body' => 'Body',
         'cookies' => 'Cookies',
@@ -50,5 +50,5 @@ return [
         'copy_header' => 'Header Copied',
     ],
 
-    'empty' => 'Empty!',
+    'empty' => 'خالي!',
 ];

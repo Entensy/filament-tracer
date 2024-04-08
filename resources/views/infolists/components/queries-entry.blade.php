@@ -1,7 +1,4 @@
-<x-dynamic-component
-    :component="$getEntryWrapperView()"
-    :entry="$entry"
->
+<x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
     @php
         $queries = $getChangeState();
     @endphp
@@ -17,19 +14,19 @@
                         $sql = $joinQueryWithBindings($query['sql'], $query['bindings']);
                     @endphp
                     <p>
-                        <span class="fi-tracer__yellow fi-tracer__upper">{{ $query['connection_name'] }}</span>
-                        <span class="fi-tracer__red">{{ $query['time'] }}ms</span>
+                        <span class="fi-tracer__upper">{{ $query['connection_name'] }}</span>
+                        <span class="fi-tracer__danger">{{ $query['time'] }}ms</span>
                     </p>
 
-                    <p
-                        class="cursor-pointer language-sql"
+                    <p class="cursor-pointer language-sql"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($sql))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_sql')), {
                                     theme: $store.theme,
                                 })
-                            "
-                    >{{ $sql }}</p>
+                            ">
+                        {{ $sql }}
+                    </p>
                 @endif
 
             </div>
