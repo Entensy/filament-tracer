@@ -1,4 +1,7 @@
-<x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
+<x-dynamic-component
+    :component="$getEntryWrapperView()"
+    :entry="$entry"
+>
     @php
         $queries = $getChangeState();
     @endphp
@@ -18,13 +21,15 @@
                         <span class="fi-tracer__danger">{{ $query['time'] }}ms</span>
                     </p>
 
-                    <p class="cursor-pointer language-sql"
+                    <p
+                        class="cursor-pointer language-sql"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($sql))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_sql')), {
                                     theme: $store.theme,
                                 })
-                            ">
+                            "
+                    >
                         {{ $sql }}
                     </p>
                 @endif

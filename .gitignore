@@ -3,6 +3,8 @@
 /.vscode
 *.cache
 *.log
+yarn.lock
+package-lock.json
 *phpactor*
 node_modules
 /vendor

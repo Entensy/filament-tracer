@@ -1,4 +1,7 @@
-<x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
+<x-dynamic-component
+    :component="$getEntryWrapperView()"
+    :entry="$entry"
+>
     @php
         $cookies = $getChangeState();
         $isNullValuesHidden = $hideNullValues();
@@ -12,23 +15,30 @@
             <div class="fi-tracer__field">
 
                 <p>
-                    <span class="cursor-pointer"
+                    <span
+                        class="cursor-pointer"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($key))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_header')), {
                                     theme: $store.theme,
                                 })
-                            ">{{ $key }}</span>
+                            "
+                    >{{ $key ?? '-' }}</span>
 
-                <p class="flex cursor-pointer"
+                <p
+                    class="flex cursor-pointer"
                     x-on:click="
                                 window.navigator.clipboard.writeText(@js($value))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_value')), {
                                     theme: $store.theme,
                                 })
-                            ">
-                    <x-filament::badge color='info' class="block">
-                        {{ $value ?? '' }}
+                            "
+                >
+                    <x-filament::badge
+                        color='info'
+                        class="block"
+                    >
+                        {{ $value ?? '-' }}
                     </x-filament::badge>
                 </p>
                 </p>

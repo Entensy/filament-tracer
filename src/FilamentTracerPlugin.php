@@ -25,9 +25,10 @@ class FilamentTracerPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->resources([
-            config('filament-tracer.filament.resource'),
-        ]);
+        $panel
+            ->resources([
+                config('filament-tracer.filament.resource'),
+            ]);
     }
 
     public function boot(Panel $panel): void

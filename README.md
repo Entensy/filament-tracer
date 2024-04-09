@@ -72,6 +72,22 @@ $this->reportable(function (Throwable $e) {
 });
 ```
 
+### Theme
+
+You may change the palette colors in your **Filament Panel Service Provider**:
+
+```php
+$panel
+    ->colors([
+        'danger' => Color::Rose,
+        'primary' => Color::Red,
+        'success' => Color::Green,
+        'warning' => Color::Yellow,
+        'gray' => Color::Gray,
+        'info' => Color::Blue,
+    ])
+```
+
 ### Configuration
 
 You may publish configuration using Laravel's publish command:

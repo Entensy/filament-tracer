@@ -1,4 +1,7 @@
-<x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
+<x-dynamic-component
+    :component="$getEntryWrapperView()"
+    :entry="$entry"
+>
     @php
         $body = $getChangeState();
     @endphp
@@ -8,23 +11,30 @@
             <div class="fi-tracer__field">
 
                 <p>
-                    <span class="cursor-pointer"
+                    <span
+                        class="cursor-pointer"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($key))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_key')), {
                                     theme: $store.theme,
                                 })
-                            ">{{ $key }}
+                            "
+                    >{{ $key ?? '-' }}
                     </span>
-                    <span class="flex cursor-pointer"
+                    <span
+                        class="flex cursor-pointer"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($value))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_value')), {
                                     theme: $store.theme,
                                 })
-                            ">
-                        <x-filament::badge color='warning' class="block">
-                            {{ $value }}
+                            "
+                    >
+                        <x-filament::badge
+                            color='warning'
+                            class="block"
+                        >
+                            {{ $value ?? '-' }}
                         </x-filament::badge>
                     </span>
                 </p>
