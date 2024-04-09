@@ -17,8 +17,8 @@
                         $sql = $joinQueryWithBindings($query['sql'], $query['bindings']);
                     @endphp
                     <p>
-                        <span class="fi-tracer__yellow fi-tracer__upper">{{ $query['connection_name'] }}</span>
-                        <span class="fi-tracer__red">{{ $query['time'] }}ms</span>
+                        <span class="fi-tracer__upper">{{ $query['connection_name'] }}</span>
+                        <span class="fi-tracer__danger">{{ $query['time'] }}ms</span>
                     </p>
 
                     <p
@@ -29,7 +29,9 @@
                                     theme: $store.theme,
                                 })
                             "
-                    >{{ $sql }}</p>
+                    >
+                        {{ $sql }}
+                    </p>
                 @endif
 
             </div>

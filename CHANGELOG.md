@@ -1,8 +1,19 @@
 # Changelog
 
-All notable changes to `filament-tracer` will be documented in this
-file
+All notable changes to `filament-tracer` will be documented in this file
 
-## 1.0.0 - 202X-XX-XX
+## 0.1.3 - 2024-03-31
 
-- initial release
+-   Removed unnecessary CSS import.
+
+## 0.1.2 - 2024-03-31
+
+-   Bump dependency versions.
+
+## 0.1.1 - 2024-03-31
+
+-   Support Laravel 11.
+
+## 0.1.0 - 2023-12-03
+
+-   initial release.

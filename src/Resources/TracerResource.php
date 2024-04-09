@@ -10,7 +10,6 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\FontWeight;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Entensy\FilamentTracer\FilamentTracerPlugin;
@@ -62,7 +61,9 @@ class TracerResource extends Resource
                                                         ->badge()
                                                         ->color('danger'),
                                                     Infolists\Components\TextEntry::make('path')
-                                                        ->label(__('filament-tracer::labels.path')),
+                                                        ->label(__('filament-tracer::labels.path'))
+                                                        ->badge()
+                                                        ->color('info'),
                                                     Infolists\Components\TextEntry::make('ip')
                                                         ->label(__('filament-tracer::labels.ip'))
                                                         ->badge()
@@ -77,6 +78,10 @@ class TracerResource extends Resource
                                                         ->inlineLabel(),
                                                     Infolists\Components\TextEntry::make('message')
                                                         ->label(__('filament-tracer::labels.message'))
+                                                        ->extraAttributes(['class' => 'text-2xl'])
+                                                        ->copyable()
+                                                        ->badge()
+                                                        ->color('gray')
                                                         ->columnSpanFull(),
                                                 ]),
                                             Infolists\Components\Section::make('')
@@ -89,11 +94,14 @@ class TracerResource extends Resource
                                                             ->grow(false),
                                                         Infolists\Components\TextEntry::make('method')
                                                             ->label(__('filament-tracer::labels.method'))
-                                                            ->weight(FontWeight::SemiBold),
+                                                            ->badge()
+                                                            ->color('warning'),
                                                     ])
                                                         ->columns(),
                                                     Infolists\Components\TextEntry::make('file')
-                                                        ->label(__('filament-tracer::labels.file')),
+                                                        ->label(__('filament-tracer::labels.file'))
+                                                        ->badge()
+                                                        ->color('gray'),
                                                 ]),
                                         ]),
                                 ]),

@@ -10,7 +10,7 @@ use Entensy\FilamentTracer\Contracts\Tracerable;
 
 class FilamentTracer
 {
-    public static function capture(Throwable $t, Request $request = null): bool
+    public static function capture(Throwable $t, ?Request $request = null): bool
     {
         /** @var \Entensy\FilamentTracer\Models\Tracer $model */
         $model = static::getModel();

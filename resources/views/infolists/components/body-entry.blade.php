@@ -12,23 +12,31 @@
 
                 <p>
                     <span
-                        class="cursor-pointer fi-tracer__yellow"
+                        class="cursor-pointer"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($key))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_key')), {
                                     theme: $store.theme,
                                 })
                             "
-                    >{{ $key }}</span>
+                    >{{ $key ?? '-' }}
+                    </span>
                     <span
-                        class="cursor-pointer fi-tracer__black"
+                        class="flex cursor-pointer"
                         x-on:click="
                                 window.navigator.clipboard.writeText(@js($value))
                                 $tooltip(@js(__('filament-tracer::labels.tooltips.copy_value')), {
                                     theme: $store.theme,
                                 })
                             "
-                    >{{ $value }}</span>
+                    >
+                        <x-filament::badge
+                            color='warning'
+                            class="block"
+                        >
+                            {{ $value ?? '-' }}
+                        </x-filament::badge>
+                    </span>
                 </p>
 
             </div>
