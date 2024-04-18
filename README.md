@@ -6,14 +6,13 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/entensy/filament-tracer.svg?style=flat-square)](https://packagist.org/packages/entensy/filament-tracer)
 
 Filament tracer is a flexible filament plugin to report and view exceptions and
-errors with a generic table schema to be able to insert traces and errors into
-the table in any programming languages.
+traces with a generic table schema to be able to store traces from other programming
+languages.
 
-The purpose of this package is to have a common table to report/log any type of
-errors throughout your applications, independent of what programming language
-you use in your application so long as your application has a connection to the
-database, you should be able to insert errors and logs and view them in one
-place.
+The purpose of this package is to have a common tables to report/log errors
+throughout your applications, independent of what programming language
+you use so long as your application has a connection to the database,
+you can store the traces then later view them in filament dashboard.
 
 ## Installation
 
@@ -175,8 +174,9 @@ Please email `security@entensy.com` for any security issues.
 
 ## Credits
 
--   [AlanD20](https://github.com/AlanD20)
--   [Entensy](https://github.com/entensy)
+- [AlanD20](https://github.com/AlanD20)
+- [Entensy](https://github.com/entensy)
+- [RawanD201](https://github.com/RawanD201)
 
 ## License
 
