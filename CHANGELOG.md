@@ -2,6 +2,9 @@
 
 All notable changes to `filament-tracer` will be documented in this file
 
+## 0.1.5 - 2024-08-04
+-   use stable dependencies
+
 ## 0.1.4 - 2024-04-09
 
 -   Add new translations: ckb, ar.

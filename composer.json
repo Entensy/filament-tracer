@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": "^8.1|^8.2",
-        "illuminate/support": "^10.x-dev|^11.x-dev",
-        "illuminate/database": "^10.x-dev|^11.x-dev",
+        "illuminate/support": "^10.48|^11.19",
+        "illuminate/database": "^10.48|^11.19",
         "filament/filament": "^3.0",
         "spatie/laravel-package-tools": "^1.16",
         "spatie/laravel-ignition": "^2.0"
@@ -60,5 +60,5 @@
             }
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
