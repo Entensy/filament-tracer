@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "php": "^8.1|^8.2",
+        "php": "^8.1|^8.2|^8.3",
         "illuminate/support": "^10.48|^11.19",
         "illuminate/database": "^10.48|^11.19",
-        "filament/filament": "^3.0",
+        "filament/filament": "^3.2",
         "spatie/laravel-package-tools": "^1.16",
         "spatie/laravel-ignition": "^2.0"
     },
