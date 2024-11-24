@@ -1,6 +1,7 @@
 {
     "name": "entensy/filament-tracer",
     "description": "Filament Tracer is a versatile package to report exceptions and traces. Table schemas are compatible with any language of choice.",
+    "version": "0.1.7",
     "keywords": [
         "entensy",
         "filament-tracer"

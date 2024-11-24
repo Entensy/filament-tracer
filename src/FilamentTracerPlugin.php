@@ -48,7 +48,7 @@ class FilamentTracerPlugin implements Plugin
 
     public static function make(): static
     {
-        return new static;
+        return new self();
     }
 
     public function tracesCounterUsing(mixed $callback): static
