@@ -2,11 +2,11 @@
 
 namespace Entensy\FilamentTracer;
 
-use Throwable;
+use Entensy\FilamentTracer\Contracts\Tracerable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Entensy\FilamentTracer\Contracts\Tracerable;
 use Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder;
+use Throwable;
 
 class DefaultTracer implements Tracerable
 {
@@ -16,9 +16,6 @@ class DefaultTracer implements Tracerable
     ) {
     }
 
-    /**
-     * @return DefaultTracer
-     */
     public static function make(Throwable $t): static
     {
         return new static($t);
@@ -41,17 +38,36 @@ class DefaultTracer implements Tracerable
 
     public function getPath(): string
     {
-        return url()->full() ?? ($_SERVER['HTTP_HOST'] ?? '') . ($_SERVER['REQUEST_URI'] ?? '') . ($_SERVER['QUERY_STRING'] ?? '');
+        if (function_exists('url')) {
+            try {
+                $full = url()->full();
+
+                if (is_string($full) && $full !== '') {
+                    return $full;
+                }
+            } catch (Throwable) {
+                // Fall through to server-based reconstruction.
+            }
+        }
+
+        $host = $_SERVER['HTTP_HOST'] ?? '';
+        $uri = $_SERVER['REQUEST_URI'] ?? '';
+
+        return $host . $uri;
     }
 
     public function getIp(): string
     {
+        if ($this->request) {
+            return (string) $this->request->ip();
+        }
+
         return $_SERVER['REMOTE_ADDR'] ?? '';
     }
 
     public function getCode(): string
     {
-        return $this->getThrowable()->getCode();
+        return (string) $this->getThrowable()->getCode();
     }
 
     public function getMessage(): string
@@ -61,7 +77,7 @@ class DefaultTracer implements Tracerable
 
     public function getLine(): string
     {
-        return $this->getThrowable()->getLine();
+        return (string) $this->getThrowable()->getLine();
     }
 
     public function getMethod(): string
@@ -81,22 +97,34 @@ class DefaultTracer implements Tracerable
 
     public function getQueries(): string
     {
-        $queries = \json_encode(app()->make(QueryRecorder::class)->getQueries());
+        if (! class_exists(QueryRecorder::class) || ! app()->bound(QueryRecorder::class)) {
+            return '[]';
+        }
 
-        return $queries ?? '';
+        $queries = json_encode(app()->make(QueryRecorder::class)->getQueries());
+
+        return $queries !== false ? $queries : '[]';
     }
 
     public function getBody(): string
     {
         if ($this->request) {
-            return $this->request->getContent();
+            $all = $this->request->all();
+
+            if ($all !== []) {
+                return (string) json_encode($all, JSON_UNESCAPED_SLASHES);
+            }
+
+            $content = $this->request->getContent();
+
+            return $content !== '' ? $content : '{}';
         }
 
-        if (count($_POST) === 0) {
+        if ($_POST === []) {
             return '{}';
         }
 
-        return \json_encode($_POST, JSON_UNESCAPED_SLASHES);
+        return (string) json_encode($_POST, JSON_UNESCAPED_SLASHES);
     }
 
     public function getHeaders(): string
@@ -121,15 +149,13 @@ class DefaultTracer implements Tracerable
             }
         }
 
-        $headers = \json_encode($headers, JSON_UNESCAPED_SLASHES);
-
-        return $headers ?? '';
+        return (string) json_encode($headers, JSON_UNESCAPED_SLASHES);
     }
 
     public function getCookies(): string
     {
         if ($this->request) {
-            return \json_encode($this->request->cookies->all(), JSON_UNESCAPED_SLASHES);
+            return (string) json_encode($this->request->cookies->all(), JSON_UNESCAPED_SLASHES);
         }
 
         return $_SERVER['HTTP_COOKIE'] ?? '';

@@ -14,13 +14,13 @@ return new class extends Migration {
             $table->bigIncrements(config('filament-tracer.database.primary_key'));
             $table->string('source', 255);
             $table->string('error_type', 255)->default('Error');
-            $table->string('path', 100);
+            $table->string('path', 2048);
             $table->string('ip', 64);
-            $table->string('code', 12);
+            $table->string('code', 64);
             $table->text('message');
             $table->integer('line');
-            $table->string('method', 100);
-            $table->string('file', 100);
+            $table->string('method', 255);
+            $table->string('file', 1024);
             $table->text('traces')->nullable();
             $table->text('queries')->nullable();
             $table->text('body')->nullable();
