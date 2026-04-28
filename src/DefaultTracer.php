@@ -120,7 +120,7 @@ class DefaultTracer implements Tracerable
             return $content !== '' ? $content : '{}';
         }
 
-        if ($_POST === []) {
+        if (empty($_POST)) {
             return '{}';
         }
 

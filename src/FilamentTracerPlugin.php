@@ -81,7 +81,7 @@ class FilamentTracerPlugin implements Plugin
             return (int) $this->evaluate($this->queriesCounterUsing, ['record' => $record]);
         }
 
-        return count((array) ($record->queries ?? []));
+        return count(\json_decode((string) $record->queries, associative: true) ?? []);
     }
 
     public function bodyCounterUsing(mixed $callback): static
@@ -97,7 +97,7 @@ class FilamentTracerPlugin implements Plugin
             return (int) $this->evaluate($this->bodyCounterUsing, ['record' => $record]);
         }
 
-        return count((array) ($record->body ?? []));
+        return count(\json_decode((string) $record->body, associative: true) ?? []);
     }
 
     public function headersCounterUsing(mixed $callback): static
@@ -113,7 +113,7 @@ class FilamentTracerPlugin implements Plugin
             return (int) $this->evaluate($this->headersCounterUsing, ['record' => $record]);
         }
 
-        return count((array) ($record->headers ?? []));
+        return count(\json_decode((string) $record->headers, associative: true) ?? []);
     }
 
     public function cookiesCounterUsing(mixed $callback): static

@@ -57,7 +57,7 @@ class Tracer extends Model
      */
     public function getVisibleCookiesAttribute(): array
     {
-        $cookies = (array) ($this->cookies ?? []);
+        $cookies = \json_decode((string) $this->cookies, associative: true) ?? [];
 
         if (config('filament-tracer.filament.cookies.hide_null_values')) {
             $cookies = Arr::where(
