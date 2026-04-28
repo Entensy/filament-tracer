@@ -2,12 +2,12 @@
 
 namespace Entensy\FilamentTracer;
 
-use Filament\Panel;
-use Filament\FilamentManager;
+use Closure;
 use Filament\Contracts\Plugin;
+use Filament\FilamentManager;
+use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class FilamentTracerPlugin implements Plugin
 {
@@ -23,12 +23,13 @@ class FilamentTracerPlugin implements Plugin
 
     protected mixed $cookiesCounterUsing = null;
 
+    protected bool | Closure $hasStatsWidget = false;
+
     public function register(Panel $panel): void
     {
-        $panel
-            ->resources([
-                config('filament-tracer.filament.resource'),
-            ]);
+        $panel->resources([
+            config('filament-tracer.filament.resource'),
+        ]);
     }
 
     public function boot(Panel $panel): void
@@ -41,14 +42,14 @@ class FilamentTracerPlugin implements Plugin
         return 'filament-tracer';
     }
 
-    public static function filament(): FilamentManager|FilamentTracerPlugin
+    public static function filament(): FilamentManager | FilamentTracerPlugin
     {
         return filament('filament-tracer');
     }
 
     public static function make(): static
     {
-        return new self();
+        return new self;
     }
 
     public function tracesCounterUsing(mixed $callback): static
@@ -61,13 +62,10 @@ class FilamentTracerPlugin implements Plugin
     public function getTracesCounter(Model $record): int
     {
         if ($this->tracesCounterUsing !== null) {
-            return $this->evaluate($this->tracesCounterUsing, ['record' => $record]);
+            return (int) $this->evaluate($this->tracesCounterUsing, ['record' => $record]);
         }
 
-        // Traces should be a text based with new lines
-        $traces = explode(PHP_EOL, $record->traces);
-
-        return count($traces);
+        return count($record->traces_array ?? []);
     }
 
     public function queriesCounterUsing(mixed $callback): static
@@ -80,12 +78,10 @@ class FilamentTracerPlugin implements Plugin
     public function getQueriesCounter(Model $record): int
     {
         if ($this->queriesCounterUsing !== null) {
-            return $this->evaluate($this->queriesCounterUsing, ['record' => $record]);
+            return (int) $this->evaluate($this->queriesCounterUsing, ['record' => $record]);
         }
 
-        $queries = \json_decode($record->queries, associative: true);
-
-        return is_array($queries) ? count($queries) : strlen($queries);
+        return count(\json_decode((string) $record->queries, associative: true) ?? []);
     }
 
     public function bodyCounterUsing(mixed $callback): static
@@ -98,12 +94,10 @@ class FilamentTracerPlugin implements Plugin
     public function getBodyCounter(Model $record): int
     {
         if ($this->bodyCounterUsing !== null) {
-            return $this->evaluate($this->bodyCounterUsing, ['record' => $record]);
+            return (int) $this->evaluate($this->bodyCounterUsing, ['record' => $record]);
         }
 
-        $body = \json_decode($record->body, associative: true);
-
-        return $body ? count($body) : 0;
+        return count(\json_decode((string) $record->body, associative: true) ?? []);
     }
 
     public function headersCounterUsing(mixed $callback): static
@@ -116,12 +110,10 @@ class FilamentTracerPlugin implements Plugin
     public function getHeadersCounter(Model $record): int
     {
         if ($this->headersCounterUsing !== null) {
-            return $this->evaluate($this->headersCounterUsing, ['record' => $record]);
+            return (int) $this->evaluate($this->headersCounterUsing, ['record' => $record]);
         }
 
-        $headers = \json_decode($record->headers, associative: true);
-
-        return is_array($headers) ? count($headers) : strlen($headers);
+        return count(\json_decode((string) $record->headers, associative: true) ?? []);
     }
 
     public function cookiesCounterUsing(mixed $callback): static
@@ -134,15 +126,24 @@ class FilamentTracerPlugin implements Plugin
     public function getCookiesCounter(Model $record): int
     {
         if ($this->cookiesCounterUsing !== null) {
-            return $this->evaluate($this->cookiesCounterUsing, ['record' => $record]);
+            return (int) $this->evaluate($this->cookiesCounterUsing, ['record' => $record]);
         }
 
-        $cookies = \json_decode($record->cookies, associative: true);
+        return count((array) ($record->visible_cookies ?? []));
+    }
 
-        if (config('filament-tracer.filament.cookies.hide_null_values')) {
-            $cookies = Arr::whereNotNull($cookies);
-        }
+    /**
+     * Opt in to the "at a glance" stats widget on the tracer list page.
+     */
+    public function statsWidget(bool | Closure $condition = true): static
+    {
+        $this->hasStatsWidget = $condition;
 
-        return is_array($cookies) ? count($cookies) : strlen($cookies);
+        return $this;
+    }
+
+    public function hasStatsWidget(): bool
+    {
+        return (bool) $this->evaluate($this->hasStatsWidget);
     }
 }
