@@ -45,10 +45,10 @@ class FilamentTracer
             'method' => $tracer->getMethod(),
             'file' => $tracer->getFile(),
             'traces' => $tracer->getTraces(),
-            'queries' => $tracer->getQueries(),
-            'body' => $tracer->getBody(),
-            'headers' => $tracer->getHeaders(),
-            'cookies' => $tracer->getCookies(),
+            'queries' => \json_decode((string) $tracer->getQueries(), associative: true) ?? [],
+            'body' => \json_decode((string) $tracer->getBody(), associative: true) ?? [],
+            'headers' => \json_decode((string) $tracer->getHeaders(), associative: true) ?? [],
+            'cookies' => \json_decode((string) $tracer->getCookies(), associative: true) ?? [],
             'created_at' => time(),
         ];
 
